@@ -4,6 +4,17 @@ const Tarea = require('../models/tareaModel');
 function normalizarTexto(valor) {
   return typeof valor === 'string' ? valor.trim() : '';
 }
+function normalizarNombre(nombre) {
+  return normalizarTexto(nombre)
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(
+      palabra =>
+        palabra.charAt(0).toUpperCase() +
+        palabra.slice(1).toLowerCase()
+    )
+    .join(' ');
+}
 
 function normalizarCorreo(correo) {
   return normalizarTexto(correo).toLowerCase();
@@ -324,6 +335,7 @@ async function mostrarRegistroEstudiante(req, res) {
 
 async function registrarEstudiante(req, res) {
   const valores = valoresEstudiante(req.body);
+  valores.nombre = normalizarNombre(valores.nombre);
   const password = normalizarTexto(req.body.password);
   const confirmarPassword = normalizarTexto(req.body.confirmarPassword);
 
