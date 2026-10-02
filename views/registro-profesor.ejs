@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de profesor - PLANUTOR</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7ede2;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+    }
+
+    .contenedor {
+      width: 100%;
+      max-width: 500px;
+      background: white;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #f28482;
+      margin-bottom: 10px;
+    }
+
+    .descripcion {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .error {
+      background-color: #ffe1e1;
+      color: #b00020;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .mensaje {
+      background-color: #e1f5e9;
+      color: #246b45;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    form {
+      display: grid;
+      gap: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f28482;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .volver {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1>Registro de profesor</h1>
+
+    <p class="descripcion">
+      Crea tu cuenta de profesor en PLANUTOR.
+    </p>
+
+    <% if (error) { %>
+      <div class="error">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <% if (mensaje) { %>
+      <div class="mensaje">
+        <%= mensaje %>
+      </div>
+    <% } %>
+
+    <form action="/registro-profesor" method="POST">
+
+      <label>
+        Nombre completo
+        <input
+          type="text"
+          name="nombre"
+          value="<%= valores.nombre %>"
+          required
+        >
+      </label>
+
+      <label>
+        Correo institucional
+        <input
+          type="email"
+          name="correo"
+          placeholder="ejemplo@iedeboraarango.edu.co"
+          value="<%= valores.correo %>"
+          required
+        >
+      </label>
+
+      <label>
+  Materia
+  <select name="area" required>
+    <option value="">Selecciona tu materia</option>
+
+    <option value="Lengua Castellana" <%= valores.area === 'Lengua Castellana' ? 'selected' : '' %>>
+      Lengua Castellana
+    </option>
+
+    <option value="Matemáticas" <%= valores.area === 'Matemáticas' ? 'selected' : '' %>>
+      Matemáticas
+    </option>
+
+    <option value="Ciencias Naturales" <%= valores.area === 'Ciencias Naturales' ? 'selected' : '' %>>
+      Ciencias Naturales
+    </option>
+
+    <option value="Biología" <%= valores.area === 'Biología' ? 'selected' : '' %>>
+      Biología
+    </option>
+
+    <option value="Física" <%= valores.area === 'Física' ? 'selected' : '' %>>
+      Física
+    </option>
+
+    <option value="Química" <%= valores.area === 'Química' ? 'selected' : '' %>>
+      Química
+    </option>
+
+    <option value="Ciencias Sociales" <%= valores.area === 'Ciencias Sociales' ? 'selected' : '' %>>
+      Ciencias Sociales
+    </option>
+
+    <option value="Historia" <%= valores.area === 'Historia' ? 'selected' : '' %>>
+      Historia
+    </option>
+
+    <option value="Geografía" <%= valores.area === 'Geografía' ? 'selected' : '' %>>
+      Geografía
+    </option>
+
+    <option value="Filosofía" <%= valores.area === 'Filosofía' ? 'selected' : '' %>>
+      Filosofía
+    </option>
+
+    <option value="Inglés" <%= valores.area === 'Inglés' ? 'selected' : '' %>>
+      Inglés
+    </option>
+
+    <option value="Francés" <%= valores.area === 'Francés' ? 'selected' : '' %>>
+      Francés
+    </option>
+
+    <option value="Educación Física" <%= valores.area === 'Educación Física' ? 'selected' : '' %>>
+      Educación Física
+    </option>
+
+    <option value="Educación Artística" <%= valores.area === 'Educación Artística' ? 'selected' : '' %>>
+      Educación Artística
+    </option>
+
+    <option value="Música" <%= valores.area === 'Música' ? 'selected' : '' %>>
+      Música
+    </option>
+
+    <option value="Tecnología e Informática" <%= valores.area === 'Tecnología e Informática' ? 'selected' : '' %>>
+      Tecnología e Informática
+    </option>
+
+    <option value="Ética y Valores" <%= valores.area === 'Ética y Valores' ? 'selected' : '' %>>
+      Ética y Valores
+    </option>
+
+    <option value="Religión" <%= valores.area === 'Religión' ? 'selected' : '' %>>
+      Religión
+    </option>
+
+    <option value="Economía" <%= valores.area === 'Economía' ? 'selected' : '' %>>
+      Economía
+    </option>
+
+    <option value="Ciencias Políticas" <%= valores.area === 'Ciencias Políticas' ? 'selected' : '' %>>
+      Ciencias Políticas
+    </option>
+
+    <option value="Emprendimiento" <%= valores.area === 'Emprendimiento' ? 'selected' : '' %>>
+      Emprendimiento
+    </option>
+
+    <option value="Estadística" <%= valores.area === 'Estadística' ? 'selected' : '' %>>
+      Estadística
+    </option>
+
+    <option value="Lectura Crítica" <%= valores.area === 'Lectura Crítica' ? 'selected' : '' %>>
+      Lectura Crítica
+    </option>
+
+    <option value="Preescolar" <%= valores.area === 'Preescolar' ? 'selected' : '' %>>
+      Preescolar
+    </option>
+
+    <option value="Primaria" <%= valores.area === 'Primaria' ? 'selected' : '' %>>
+      Primaria
+    </option>
+  </select>
+</label>
+
+<label>
+  Institución
+  <input
+    type="text"
+    name="institucion"
+    value="<%= valores.institucion %>"
+    readonly
+  >
+</label>
+      <label>
+        Contraseña
+        <input
+          type="password"
+          name="password"
+          required
+        >
+      </label>
+
+      <label>
+        Confirmar contraseña
+        <input
+          type="password"
+          name="confirmarPassword"
+          required
+        >
+      </label>
+
+      <button type="submit">
+        Crear cuenta
+      </button>
+
+    </form>
+
+    <a class="volver" href="/">
+      ← Volver al inicio de sesión
+    </a>
+
+  </div>
+
+</body>
+</html>

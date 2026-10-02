@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title><%= clase.nombre %> - PLANUTOR</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7ede2;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .contenedor {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .encabezado {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    h1 {
+      color: #f28482;
+      margin-bottom: 10px;
+    }
+
+    .informacion {
+      color: #555;
+      margin-top: 8px;
+    }
+
+    .codigo {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 12px 20px;
+      background-color: #f7ede2;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .seccion {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .seccion h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .estudiante {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .estudiante:last-child {
+      border-bottom: none;
+    }
+
+    .estudiante strong {
+      color: #333;
+    }
+
+    .sin-estudiantes {
+      color: #777;
+    }
+
+    .volver {
+      display: inline-block;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <section class="encabezado">
+
+      <h1><%= clase.nombre %></h1>
+
+      <p class="informacion">
+        <strong>Grado:</strong> <%= clase.grado %>
+      </p>
+
+      <p class="informacion">
+        <strong>Profesor:</strong> <%= profesor.nombre %>
+      </p>
+
+      <div class="codigo">
+        Código: <%= clase.codigo %>
+      </div>
+
+    </section>
+
+
+    <section class="seccion">
+
+      <h2>Estudiantes de la clase</h2>
+
+      <% if (estudiantes.length === 0) { %>
+
+        <p class="sin-estudiantes">
+          Aún no hay estudiantes inscritos en esta clase.
+        </p>
+
+      <% } else { %>
+
+        <% estudiantes.forEach(estudiante => { %>
+
+          <div class="estudiante">
+            <strong><%= estudiante.nombre %></strong>
+            <p><%= estudiante.correo %></p>
+          </div>
+
+        <% }) %>
+
+      <% } %>
+
+    </section>
+
+
+    <a class="volver" href="/clases/profesor/<%= profesor.id %>">
+      ← Volver a mis clases
+    </a>
+
+  </div>
+
+</body>
+</html>

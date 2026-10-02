@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar clase - PLANUTOR</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7ede2;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .contenedor {
+      background: white;
+      width: 100%;
+      max-width: 500px;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #f28482;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 18px;
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f28482;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-top: 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1>Agregar clase o curso</h1>
+
+    <p>
+      Ingresa el código que te dio tu profesor.
+    </p>
+
+    <form action="/clases/unirse" method="POST">
+
+      <input
+        type="hidden"
+        name="estudianteId"
+        value="<%= estudiante.id %>"
+      >
+
+      <input
+        type="text"
+        name="codigo"
+        placeholder="Ej: ABC-123"
+        maxlength="7"
+        required
+      >
+
+      <button type="submit">
+        Unirme a la clase
+      </button>
+
+    </form>
+
+    <a
+      class="volver"
+      href="/panel/<%= estudiante.id %>"
+    >
+      ← Volver al panel
+    </a>
+
+  </div>
+
+</body>
+</html>
